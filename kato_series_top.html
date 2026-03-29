@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>映像フリーランス加藤卓哉を作ってくれた人たち</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Serif+JP:wght@300;400&display=swap');
+
+  :root {
+    --ink: #0e0c0a;
+    --paper: #f2ede6;
+    --aged: #d4c9b8;
+    --rust: #8b4a2a;
+    --silver: #7a7570;
+    --mist: #a8a09a;
+    --warm: #c8b99a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif JP', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── GRAIN ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem clamp(1.5rem, 6vw, 5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(14,12,10,0.08);
+    background: rgba(242,237,230,0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: var(--rust);
+  }
+
+  nav {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    color: var(--silver);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    padding: clamp(6rem, 15vw, 10rem) clamp(1.5rem, 6vw, 5rem) clamp(3rem, 8vw, 6rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    border-bottom: 1px solid rgba(14,12,10,0.12);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(139,74,42,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(180,160,130,0.1) 0%, transparent 40%);
+    z-index: 0;
+  }
+
+  .hero-episode {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--rust);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: riseIn 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: riseIn 1s ease 0.6s forwards;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--rust);
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: var(--silver);
+    line-height: 2;
+    max-width: 36em;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: riseIn 1s ease 0.9s forwards;
+  }
+
+  .hero-line {
+    position: absolute;
+    right: clamp(1.5rem, 6vw, 5rem);
+    bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    color: var(--mist);
+    writing-mode: vertical-rl;
+    opacity: 0;
+    animation: riseIn 1s ease 1.5s forwards;
+  }
+
+  .hero-line::after {
+    content: '';
+    width: 1px;
+    height: 3rem;
+    background: linear-gradient(to bottom, var(--mist), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+    border-bottom: 1px solid rgba(14,12,10,0.08);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .intro { grid-template-columns: 1fr 2fr; gap: 6rem; }
+  }
+
+  .intro-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--rust);
+    padding-top: 0.4rem;
+  }
+
+  .intro-text {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 2.4;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .intro-text p + p { margin-top: 1.8em; }
+
+  .intro-text strong {
+    font-weight: 700;
+    border-bottom: 1px solid var(--rust);
+    padding-bottom: 0.1em;
+  }
+
+  /* ── SERIES LIST ── */
+  .series {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+  }
+
+  .series-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(14,12,10,0.12);
+    padding-bottom: 1.5rem;
+  }
+
+  .series-header h2 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .series-header span {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--mist);
+  }
+
+  /* ── EPISODE CARD ── */
+  .episode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .episode {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(14,12,10,0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .episode::before {
+    content: '';
+    position: absolute;
+    left: -clamp(1.5rem, 6vw, 5rem);
+    right: -clamp(1.5rem, 6vw, 5rem);
+    top: 0;
+    bottom: 0;
+    background: rgba(139,74,42,0.03);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .episode:hover::before { opacity: 1; }
+
+  .episode-num {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--aged);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    min-width: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .episode-body {
+    position: relative;
+    z-index: 1;
+  }
+
+  .episode-status {
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    margin-bottom: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .status-now .status-dot { background: var(--rust); animation: blink 1.5s ease-in-out infinite; }
+  .status-next .status-dot { background: var(--mist); }
+  .status-plan .status-dot { background: var(--aged); }
+
+  .status-now { color: var(--rust); }
+  .status-next { color: var(--mist); }
+  .status-plan { color: var(--aged); }
+
+  .episode-person {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--silver);
+    margin-bottom: 0.6rem;
+  }
+
+  .episode-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .episode-desc {
+    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    color: var(--silver);
+    line-height: 1.9;
+    max-width: 36em;
+  }
+
+  .episode-role {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--mist);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(14,12,10,0.06);
+  }
+
+  .episode-arrow {
+    font-size: 0.7rem;
+    color: var(--aged);
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    padding-top: 0.5rem;
+  }
+
+  .episode:hover .episode-arrow {
+    transform: translateX(4px);
+    color: var(--rust);
+  }
+
+  /* ── WHAT IS ── */
+  .what-is {
+    padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+    border-top: 1px solid rgba(14,12,10,0.08);
+    background: rgba(14,12,10,0.02);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .what-is { grid-template-columns: 1fr 1fr; gap: 6rem; }
+  }
+
+  .what-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+  }
+
+  .what-title {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .what-body {
+    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+    color: var(--silver);
+    line-height: 2.2;
+  }
+
+  .what-body p + p { margin-top: 1.2em; }
+
+  /* ── THREE ROLES ── */
+  .roles {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(14,12,10,0.08);
+  }
+
+  .role-item {
+    background: var(--paper);
+    padding: 1.8rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .role-icon {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--aged);
+    line-height: 1;
+  }
+
+  .role-name {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .role-desc {
+    font-size: 0.72rem;
+    color: var(--silver);
+    line-height: 1.8;
+  }
+
+  .role-given {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--rust);
+    margin-top: 0.5rem;
+  }
+
+  /* ── TK LABO FOOTER ── */
+  footer {
+    padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 6vw, 5rem);
+    border-top: 1px solid rgba(14,12,10,0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer-logo {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-logo span { color: var(--rust); }
+
+  .footer-desc {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--mist);
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── KEYFRAMES ── */
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <a class="logo" href="#"><span>TK</span> LABO</a>
+  <nav>DOCUMENTARY SERIES</nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-episode">TK LABO — Documentary Series</p>
+  <h1 class="hero-title">
+    映像フリーランス<br>
+    <em>加藤卓哉</em>を<br>
+    作ってくれた人たち
+  </h1>
+  <p class="hero-sub">
+    小僧だった頃、強い言葉で骨を作ってくれた人がいた。<br>
+    優しい言葉で血を通わせてくれた人がいた。<br>
+    その人たちを、今訪ねる。
+  </p>
+  <div class="hero-line">SCROLL</div>
+</section>
+
+<!-- Intro -->
+<section class="intro">
+  <p class="intro-label reveal">このシリーズについて</p>
+  <div class="intro-text reveal">
+    <p>
+      フリーランスのカメラマン・ライターとして生きてきた加藤卓哉には、<strong>自分を作ってくれた人たち</strong>がいる。
+    </p>
+    <p>
+      叱咤した人、激励した人、優しかった人。それぞれが違う言葉で、今の加藤卓哉を形にした。
+    </p>
+    <p>
+      その人たちを訪ね、記憶を掘り起こし、AIで記録し、残していく。人間を記録するために、AIを使うシリーズ。
+    </p>
+  </div>
+</section>
+
+<!-- Series List -->
+<section class="series">
+  <div class="series-header reveal">
+    <h2>エピソード一覧</h2>
+    <span>EPISODES</span>
+  </div>
+
+  <div class="episode-list">
+
+    <!-- EP01 -->
+    <div class="episode reveal">
+      <div class="episode-num">01</div>
+      <div class="episode-body">
+        <p class="episode-status status-now">
+          <span class="status-dot"></span>公開中
+        </p>
+        <p class="episode-person">カメラマン ── 坂本廣志</p>
+        <h3 class="episode-title">雨の椎葉、二度目の現像</h3>
+        <p class="episode-desc">
+          1980年代、九州・椎葉。土砂崩れが起きそうな大雨の中で、二人はシャッターを切った。現像が上がったとき、一人は「幻想的だ」と言い、もう一人は「ピンボケだ」と言った。30年後、その写真を引っ張り出す。お互い歳をとった。
+        </p>
+        <p class="episode-role">MFと感覚 ── 目の作り方を教えた人</p>
+      </div>
+      <div class="episode-arrow">→</div>
+    </div>
+
+    <!-- EP02 -->
+    <div class="episode reveal">
+      <div class="episode-num">02</div>
+      <div class="episode-body">
+        <p class="episode-status status-next">
+          <span class="status-dot"></span>制作中
+        </p>
+        <p class="episode-person">ライター ── 村井豊　／　語り・坂本廣志</p>
+        <h3 class="episode-title">村井豊という優しさ</h3>
+        <p class="episode-desc">
+          小僧だった加藤を、強い言葉ではなく優しい言葉で支えてくれた人がいた。村井豊は、もういない。彼を知る坂本廣志に、記憶の中の村井豊を語ってもらう。
+        </p>
+        <p class="episode-role">優しい言葉 ── 折れない心をくれた人</p>
+      </div>
+      <div class="episode-arrow">→</div>
+    </div>
+
+    <!-- EP03 -->
+    <div class="episode reveal">
+      <div class="episode-num">03</div>
+      <div class="episode-body">
+        <p class="episode-status status-plan">
+          <span class="status-dot"></span>企画中
+        </p>
+        <p class="episode-person">編集長 ── 小堀琢</p>
+        <h3 class="episode-title">言葉と構成をもらった日</h3>
+        <p class="episode-desc">
+          ライターとしての加藤卓哉を形にしたのは、強い言葉を持つ編集長だった。何を書くか、どう組み立てるか。その骨格を与えてくれた人を訪ねる。
+        </p>
+        <p class="episode-role">強い言葉 ── 構成と文章を作った人</p>
+      </div>
+      <div class="episode-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- What Is -->
+<section class="what-is">
+  <div class="reveal">
+    <p class="what-label">このシリーズの作り方</p>
+    <h2 class="what-title">人間を記録するために、<br>AIを使う。</h2>
+    <div class="what-body">
+      <p>各エピソードは取材、対話、AI画像生成、そして映像で構成される。</p>
+      <p>記憶を言語化し、その言葉をプロンプトに変え、AIが「見えなかった絵」を焼き直す。点が線になり、線が重なって面になる。</p>
+      <p>TK LABOは、AIに全振りした実験場。でもこのシリーズだけは、人間が主役だ。</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="roles">
+      <div class="role-item">
+        <div class="role-icon">目</div>
+        <div>
+          <p class="role-name">坂本廣志</p>
+          <p class="role-desc">カメラマン。MFで撮る人。自分の目と感覚でシャッターを切る人。</p>
+          <p class="role-given">与えてくれたもの ── 目の作り方</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-icon">心</div>
+        <div>
+          <p class="role-name">村井豊</p>
+          <p class="role-desc">ライター。優しい言葉を持っていた人。小僧が折れないように支えた人。</p>
+          <p class="role-given">与えてくれたもの ── 折れない心</p>
+        </div>
+      </div>
+      <div class="role-item">
+        <div class="role-icon">骨</div>
+        <div>
+          <p class="role-name">小堀琢</p>
+          <p class="role-desc">編集長。強い言葉を持つ人。言葉と構成の骨格を作った人。</p>
+          <p class="role-given">与えてくれたもの ── 言葉と構成</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p class="footer-logo"><span>TK</span> LABO</p>
+  <p class="footer-desc">AIに全振りした実験場 ── 加藤卓哉</p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
